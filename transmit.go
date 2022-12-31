@@ -66,10 +66,11 @@ type ClientListData struct {
 }
 
 type MessageData struct {
-	Sender   string
-	Channel  string
-	Encoding string
-	Data     []byte
+	Timestamp string
+	Sender    string
+	Channel   string
+	Encoding  string
+	Data      []byte
 }
 
 /*===============================================
@@ -148,10 +149,11 @@ func NewClientListData(clients []*Endpoint) *ClientListData {
 
 func NewTextMessage(sender, channel, text string) *MessageData {
 	msg := &MessageData{
-		Sender:   sender,
-		Channel:  channel,
-		Encoding: ENCODE_TEXT,
-		Data:     []byte(text),
+		Timestamp: "",
+		Sender:    sender,
+		Channel:   channel,
+		Encoding:  ENCODE_TEXT,
+		Data:      []byte(text),
 	}
 
 	return msg
@@ -178,6 +180,7 @@ func (cl *ClientListData) Print() {
 
 func (m *MessageData) Print() {
 	fmt.Printf("--- %s ---\n", reflect.TypeOf(MessageData{}).Name())
+	fmt.Printf("%s\n", m.Timestamp)
 	fmt.Printf("sender: %s\nchannel: %s\nencoding: %s\nsize: %d (bytes)\n", m.Sender, m.Channel, m.Encoding, len(m.Data))
 	fmt.Printf("--- %s ---\n\n", reflect.TypeOf(MessageData{}).Name())
 }

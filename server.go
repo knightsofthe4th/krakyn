@@ -8,6 +8,8 @@ package krakyn
 import (
 	"fmt"
 	"net"
+	"strings"
+	"time"
 )
 
 type Server struct {
@@ -136,8 +138,10 @@ func (s *Server) handleIncoming(conn net.Conn, tm *Transmission) {
 			return
 		}
 
+		msg.Timestamp = strings.Split(time.Now().String(), ".")[0]
 		msg.Sender = client.Name
 		msg.Print()
+
 		s.Broadcast(NewTransmission(MESSAGE_DATA, msg))
 	}
 }

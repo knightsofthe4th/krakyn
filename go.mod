@@ -7,6 +7,9 @@ require (
 	golang.org/x/crypto v0.4.0
 )
 
-require golang.org/x/sys v0.3.0 // indirect
+require (
+	go.starlark.net v0.0.0-20221205180719-3fd0dac74452
+	golang.org/x/sys v0.3.0 // indirect
+)
 
 //replace github.com/knightsofthe4th/krakyn => github.com/knightsofthe4th/krakyn
